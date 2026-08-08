@@ -1,12 +1,12 @@
 # Privacy Policy
 
 <!--
-  This file is mirrored to the public policy repository, which is the copy the
-  Chrome Web Store listing links to:
+  The published copy of this policy, and the URL the Chrome Web Store listing
+  points at, is:
   https://github.com/FaTb0i8u/highlighter-privacy/blob/main/policy.md
-  Any edit here must be pushed there as well. A mismatch between the published
-  policy, the dashboard disclosures and the extension's behaviour is itself a
-  Chrome Web Store policy violation.
+  The two copies must stay identical. A mismatch between the published policy,
+  the dashboard disclosures and the extension's behaviour is itself a Chrome
+  Web Store policy violation.
 -->
 
 **Last updated: 7 August 2026**
