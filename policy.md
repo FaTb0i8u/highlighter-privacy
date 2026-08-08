@@ -1,5 +1,14 @@
 # Privacy Policy
 
+<!--
+  This file is mirrored to the public policy repository, which is the copy the
+  Chrome Web Store listing links to:
+  https://github.com/FaTb0i8u/highlighter-privacy/blob/main/policy.md
+  Any edit here must be pushed there as well. A mismatch between the published
+  policy, the dashboard disclosures and the extension's behaviour is itself a
+  Chrome Web Store policy violation.
+-->
+
 **Last updated: 7 August 2026**
 
 Highlighter is a local-only browser extension. It is built so that the
@@ -81,7 +90,7 @@ device. They are not uploaded to Google's sync servers.
 | Permission | Reason |
 | --- | --- |
 | `storage` | Save highlights and settings locally |
-| `unlimitedStorage` | Avoid a 5 MB cap for users with large libraries |
+| `unlimitedStorage` | Avoid the 10 MB `storage.local` cap for users with large libraries |
 | `host_permissions` (`http://*/*`, `https://*/*`) | Run the content script that renders your highlights, and read the current tab's URL for the badge count |
 
 No `tabs`, `history`, `cookies`, `webRequest` or remote-code permissions are
@@ -89,9 +98,12 @@ requested.
 
 ## Changes
 
-Any change to this policy will be published in this file in the repository, so
-the full history is auditable.
+Any change to this policy is published at
+<https://github.com/FaTb0i8u/highlighter-privacy>, where the full commit
+history is publicly auditable, and the date at the top of this document is
+updated to match.
 
 ## Contact
 
-Open an issue in the project repository.
+Questions about this policy, bug reports and feature requests:
+<fatb0i8u@gmail.com>
