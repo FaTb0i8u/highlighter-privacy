@@ -14,10 +14,16 @@
 Highlighter is a local-only browser extension. It is built so that the
 question "where did my data go?" has exactly one answer: *nowhere*.
 
-## What is collected
+## What leaves your device
 
-**Nothing is collected.** The extension has no analytics, no telemetry, no
-crash reporting, no user accounts and no advertising identifiers.
+**Nothing.** The extension has no analytics, no telemetry, no crash reporting,
+no user accounts and no advertising identifiers, and it makes no network
+requests at all. The developer never receives your data, because there is no
+server to receive it.
+
+The extension does, however, *handle* data on your own machine in order to
+work. That is disclosed in full below and in the Chrome Web Store listing, as
+"website content" and "web history".
 
 ## What is stored, and where
 
