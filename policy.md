@@ -9,7 +9,7 @@
   Web Store policy violation.
 -->
 
-**Last updated: 7 August 2026**
+**Last updated: 15 October 2026**
 
 Highlighter is a local-only browser extension. It is built so that the
 question "where did my data go?" has exactly one answer: *nowhere*.
@@ -56,6 +56,16 @@ no third-party script. Site icons in the library are drawn locally as letter
 avatars rather than fetched from a favicon service, precisely so that browsing
 your own library does not leak the list of sites you read to anyone.
 
+The one link in the interface — the optional "Buy me a coffee" link in the side
+panel, popup and settings page — is an ordinary link. Nothing is loaded from
+Buy Me a Coffee unless you deliberately click it, at which point your browser
+opens `buymeacoffee.com` in a new tab and that site's own privacy policy
+applies. The coffee cup icon is drawn locally, for the same reason as the site
+icons above: an image hosted by Buy Me a Coffee would tell them that you use
+this extension even if you never clicked. The extension is free, nothing is
+gated behind a payment, and the developer receives no information about who
+clicked or who donated beyond what Buy Me a Coffee shows any creator.
+
 ## Site access
 
 The extension **does** request access to all `http` and `https` sites
@@ -97,6 +107,7 @@ device. They are not uploaded to Google's sync servers.
 | --- | --- |
 | `storage` | Save highlights and settings locally |
 | `unlimitedStorage` | Avoid the 10 MB `storage.local` cap for users with large libraries |
+| `contextMenus` | Add "Highlight selection" and "Open highlights panel" to the right-click menu |
 | `host_permissions` (`http://*/*`, `https://*/*`) | Run the content script that renders your highlights, and read the current tab's URL for the badge count |
 
 No `tabs`, `history`, `cookies`, `webRequest` or remote-code permissions are
