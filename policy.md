@@ -9,17 +9,22 @@
   Web Store policy violation.
 -->
 
-**Last updated: 15 October 2026**
+**Last updated: 11 November 2026**
 
 Highlighter is a local-only browser extension. It is built so that the
 question "where did my data go?" has exactly one answer: *nowhere*.
 
 ## What leaves your device
 
-**Nothing.** The extension has no analytics, no telemetry, no crash reporting,
-no user accounts and no advertising identifiers, and it makes no network
-requests at all. The developer never receives your data, because there is no
-server to receive it.
+**Your annotations are never uploaded.** The extension has no
+analytics, no telemetry, no crash reporting, no user accounts and no
+advertising identifiers. When you open a PDF in Highlighter, it downloads that
+document from its original site, which receives the usual document request
+(including authentication cookies where the browser permits). There is no
+annotation data in that request. The
+developer never receives your data, because there is no server to receive it.
+Optional settings sync is limited to settings — see
+[Chrome sync](#chrome-sync) below.
 
 The extension does, however, *handle* data on your own machine in order to
 work. That is disclosed in full below and in the Chrome Web Store listing, as
@@ -33,9 +38,10 @@ your own computer inside your Chrome profile:
 | Data | Why it exists |
 | --- | --- |
 | The highlighted text and its surrounding context | To re-locate the passage the next time you open the page |
-| Your notes and tags | To show them next to the highlight |
+| Your notes and tags, and any note you write about a whole page | To show them next to the highlight or page |
 | The page URL, hostname and title | To group highlights by page in the library |
 | The highlight colour and creation time | To render and sort your highlights |
+| Freehand strokes, pen colour/width and PDF page coordinates | To restore drawings on webpages and PDF pages |
 | Your settings (theme, panel width, disabled sites, …) | To keep the extension configured the way you like it |
 
 Tracking parameters (`utm_*`, `fbclid`, `gclid` and similar) are stripped from
@@ -44,15 +50,23 @@ campaign links resolves to one entry.
 
 ## What is never stored
 
-- Page content you did not explicitly highlight.
+- Page content you did not explicitly highlight. PDF bytes are processed in
+  memory for viewing, not saved in extension storage.
 - Passwords, form input, cookies or browsing history.
 - Anything you type into an editable field — the extension refuses to
   highlight inside inputs, textareas and `contenteditable` regions.
 
 ## Network activity
 
-The extension makes **zero network requests**. There is no backend, no CDN and
-no third-party script. Site icons in the library are drawn locally as letter
+The PDF viewer requests the document URL you explicitly open from its original
+site. A downloaded copy you choose with the file picker is read locally and
+never uploaded. Annotated-PDF exports are created entirely on your device and
+saved as a separate file with highlights and drawings embedded. The original
+is unchanged; notes and tags remain in extension storage/JSON backups.
+PDF.js, pdf-lib, fonts, character maps and rendering assets are bundled
+with the extension, not fetched from a CDN. There is no backend, analytics
+service or remotely loaded script. Normal webpage highlighting makes no network
+requests. Site icons in the library are drawn locally as letter
 avatars rather than fetched from a favicon service, precisely so that browsing
 your own library does not leak the list of sites you read to anyone.
 
@@ -78,25 +92,36 @@ What that access is actually used for:
 
 - Running the content script that paints your highlights back onto a page.
 - Reading the current tab's URL, so the toolbar badge can show how many
-  highlights that page has.
+  annotations that page has and whether highlighting or drawing is enabled.
+- Downloading a PDF from its original site when you choose to open it in
+  Highlighter.
 
-What it is **not** used for: reading, collecting or transmitting page content.
-Nothing is sent anywhere, because the extension makes no network requests at
-all. If you would rather it not run on a particular site, add that hostname to
+What it is **not** used for: collecting or uploading your annotations or page
+content to the developer. If you would rather it not run on a particular site, add that hostname to
 the disabled list in the options page.
 
 ## Chrome sync
 
-Highlights are stored with `chrome.storage.local` and therefore stay on this
-device. They are not uploaded to Google's sync servers.
+Highlights and notes are stored with `chrome.storage.local` and therefore stay
+on this device. They are never uploaded to Google's sync servers.
+
+Settings sync is **off by default**. If you turn on *Sync settings across your
+Chrome devices* in the options page, your settings — theme, colour names,
+disabled sites and behaviour preferences — are written to
+`chrome.storage.sync`. Chrome then stores them in your Google account and
+copies them to your other signed-in Chrome browsers, under
+[Google's privacy policy](https://policies.google.com/privacy). The extension
+does not upload settings itself; Chrome does the syncing. Turning the
+option off stops further syncing.
 
 ## Your control over your data
 
 - **Export** — download every highlight as JSON, Markdown, CSV or plain text
-  from the extension's options page or side panel.
+  from the extension's options page or side panel. Full JSON backups also
+  preserve drawing geometry; text exports contain drawing labels and notes.
 - **Import** — restore a JSON backup, merging with or replacing what is there.
-- **Delete** — remove a single highlight, everything on one page, or all data
-  at once from the options page.
+- **Delete** — remove a single highlight, everything on one page, or all
+  highlights and notes at once from the options page.
 - **Disable per site** — add any hostname to the disabled list and the
   extension will not run there.
 - **Uninstall** — removing the extension deletes all of its stored data.
@@ -107,8 +132,9 @@ device. They are not uploaded to Google's sync servers.
 | --- | --- |
 | `storage` | Save highlights and settings locally |
 | `unlimitedStorage` | Avoid the 10 MB `storage.local` cap for users with large libraries |
-| `contextMenus` | Add "Highlight selection" and "Open highlights panel" to the right-click menu |
-| `host_permissions` (`http://*/*`, `https://*/*`) | Run the content script that renders your highlights, and read the current tab's URL for the badge count |
+| `contextMenus` | Add "Highlight selection", "Open highlights panel" and "Open library" to the right-click menu |
+| `scripting` | Start the extension in tabs that were already open when it was installed or updated, so they do not need reloading |
+| `host_permissions` (`http://*/*`, `https://*/*`) | Render highlights, read the current tab's URL for annotation state/counts, and download PDFs explicitly opened in Highlighter from their original sites |
 
 No `tabs`, `history`, `cookies`, `webRequest` or remote-code permissions are
 requested.
