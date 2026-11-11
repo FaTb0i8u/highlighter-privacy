@@ -112,6 +112,6 @@ We will update the date above when this policy changes. Material changes to
 permissions or data handling will also be reflected in the extension and its
 Chrome Web Store disclosures.
 
-For privacy questions or requests, contact the developer through the
-[StormTracker repository](https://github.com/FaTb0i8u/stormtracker). Do not post
-precise locations or other private information in a public issue.
+For privacy questions or requests, open an issue titled "StormTracker privacy"
+in the [public privacy and support repository](https://github.com/FaTb0i8u/highlighter-privacy/issues).
+Do not post precise locations or other private information in a public issue.
