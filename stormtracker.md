@@ -1,6 +1,6 @@
 # StormTracker Privacy Policy
 
-Last updated: November 11, 2026
+Last updated: November 15, 2026
 
 This policy covers the StormTracker Chrome extension. It is separate from the
 [Highlighter privacy policy](./policy.md).
@@ -50,6 +50,13 @@ database, and the extension does not use Chrome's cloud-synced storage.
 The extension can operate without a deployed StormTracker website. The standard
 standalone build does not install a content script on any website.
 
+The "Open dashboard" and "View on dashboard" links open the full website at
+`stormtracker-web.vercel.app` in a new tab. They include the selected coordinates
+and, for an alert link, its identifier in the URL. Opening these links does not
+enable settings sync or grant access to unrelated websites. The extension's
+local alerts, notification checks and official NWS forecast links remain
+available without the dashboard.
+
 If a build is explicitly configured to integrate with a StormTracker web app,
 its content script runs only on that configured website origin. It reads only
 the app's saved places, units and theme preferences, and copies them into local
@@ -67,8 +74,9 @@ address. National Weather Service point queries include coordinates. Providers
 may retain request logs under their own policies; we do not control those logs.
 
 If you open an official National Weather Service forecast link, its URL contains
-the selected coordinates. If an optional StormTracker web app is configured,
-links to that app may likewise include coordinates and an alert identifier.
+the selected coordinates. Dashboard links likewise include coordinates and may
+include an alert identifier. The website host receives those values as part of
+the page request, and the dashboard has its own website privacy policy.
 
 Privacy, source-code and voluntary-support links open external websites only
 when selected. Those websites receive normal request information and apply
