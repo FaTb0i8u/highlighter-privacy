@@ -1,6 +1,6 @@
 # StormTracker Privacy Policy
 
-Last updated: November 15, 2026
+Last updated: November 16, 2026
 
 This policy covers the StormTracker Chrome extension. It is separate from the
 [Highlighter privacy policy](./policy.md).
@@ -50,9 +50,10 @@ database, and the extension does not use Chrome's cloud-synced storage.
 The extension can operate without a deployed StormTracker website. The standard
 standalone build does not install a content script on any website.
 
-The "Open dashboard" and "View on dashboard" links open the full website at
-`stormtracker-web.vercel.app` in a new tab. They include the selected coordinates
-and, for an alert link, its identifier in the URL. Opening these links does not
+The "Open dashboard" and "View on dashboard" links open the full website in a
+new tab. Version 1.0.2 uses `storm.yutdimsum.com`; version 1.0.1 uses the previous
+website address, `stormtracker-web.vercel.app`. They include the selected
+coordinates and, for an alert link, its identifier in the URL. Opening these links does not
 enable settings sync or grant access to unrelated websites. The extension's
 local alerts, notification checks and official NWS forecast links remain
 available without the dashboard.
